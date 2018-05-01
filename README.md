@@ -1,8 +1,6 @@
 # 20180430_anjular_ionic_tutorial
 Angularjs + ionic 开发教程
 
-顺便很不要脸的求一波打赏：https://www.paypal.me/inran006
-
 > Angularjs + ionic 开发教程
 
 播放列表链接：
