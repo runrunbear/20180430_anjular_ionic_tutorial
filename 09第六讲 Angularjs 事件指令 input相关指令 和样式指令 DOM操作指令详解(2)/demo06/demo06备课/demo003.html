@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+        <style>
+            .red{ background:red;}
+            .yellow{ background:yellow;}
+        </style>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+              <input type="checkbox" ng-model="bBtn">
+              <!--<div ng-show="bBtn">aaaaaaaaaaaa</div>-->
+              <!--<div ng-if="bBtn">aaaaaaaaaaaa</div>-->
+              <div ng-switch on="bBtn">
+                  <p ng-switch-default>默认的效果</p>
+                  <p ng-switch-when="false">切换的效果</p>
+              </div>
+
+              <details ng-open="bBtn">
+                  <summary>Copyright 2011.</summary>
+                  <p>All pages and graphics on this web site are the property of W3School.</p>
+              </details>
+          </div>
+      </div>
+      <script type="text/javascript">
+        var app = angular.module('myApp',[]);
+          app.controller('firstController',['$scope','$interval',function($scope,$interval){
+
+
+                  $scope.bBtn = true;
+
+
+          }]);
+      </script>
+       
+    </body>
+</html>

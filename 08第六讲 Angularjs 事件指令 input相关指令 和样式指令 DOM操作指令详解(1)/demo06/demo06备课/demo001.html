@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+              <input type="checkbox" ng-model="aaa">
+
+
+              <select>
+                  <option>11111</option>
+                  <option ng-selected="aaa">22222</option>
+              </select>
+
+              <input type="text" ng-change="bbb='hello'" ng-model="bbb">{{bbb}}<br>
+              <input type="text" value="aasdassssssss" ng-paste="ccc=true">{{ccc}}
+
+
+              <div ng-cloak>{{text}}</div>  <!--和ng-bind差不多   刚开始数据隐藏 当加载完成显示-->
+              <div ng-non-bindable>{{text}}</div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope){
+                $scope.text='phonegap中文网';
+          });
+      </script>
+       
+    </body>
+</html>

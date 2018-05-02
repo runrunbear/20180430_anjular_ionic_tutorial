@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="angular-1.3.0.js"></script>
+    </head>
+    <body>
+        <div ng-app="">  <!--ng-app 指令初始化一个 AngularJS 应用程序。-->
+          <p>在输入框中尝试输入：</p>
+          <p>姓名：<input type="text" ng-model="name"></p>   <!--ng-model 指令把应用程序数据绑定到 HTML 元素。-->
+          <p ng-bind="name"></p>
+        </div>
+       
+    </body>
+</html>

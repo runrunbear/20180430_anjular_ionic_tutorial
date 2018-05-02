@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+
+    <script type="text/javascript" src="module02.js"></script>
+
+</head>
+<body ng-app="myApp">
+<div>
+
+    <div ng-controller="firstController">
+        {{name}}
+    </div>
+    <div   ng-controller="secondController">
+        {{name}}
+    </div>
+    <div   ng-controller="threeController">
+        {{name}}
+    </div>
+</div>
+<script type="text/javascript">
+    var app1 = angular.module("myApp", ['myApp2']);
+
+    app1.controller('firstController',function($scope){
+        $scope.name='张三';
+    });
+
+</script>
+
+</body>
+</html>

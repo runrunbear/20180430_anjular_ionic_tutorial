@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<htm>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../../angular.min.js"></script>
+    </head>
+
+    <body ng-controller='exampleController' ng-app="exampleApp">
+    <div id="test">博弈网络科技</div>
+    <div>{{name}}</div>
+    <div><input type="button" ng-click="inject()" value="injector"/></div>
+
+    <hr>
+
+    <script type="text/javascript">
+
+              var exampleApp = angular.module('exampleApp',[]);
+
+              exampleApp.controller('exampleController',['$scope', function($scope){
+
+                  $scope.name = "boyi";
+
+                  $scope.inject = function(){
+                      var $injector = angular.injector(['ng']);
+
+                      $injector.invoke(function($http) {
+                          var scopes = angular.element(document.body).scope();
+                          scopes.name = "博弈网络";//                          这里可以同http请求获得数据
+
+                      });
+
+                  };
+
+              }]);
+          </script>
+       
+    </body>
+</html>

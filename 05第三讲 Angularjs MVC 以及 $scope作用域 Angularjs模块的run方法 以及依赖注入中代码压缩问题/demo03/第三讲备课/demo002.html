@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../../angular.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+             姓名： {{name}} <br>
+             年龄：{{age}}
+          </div>
+          <div ng-controller="secondController">
+              姓名：{{name}}
+              年龄：{{age}}
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope,$rootScope){
+              $scope.name='张三';
+              $rootScope.age='30';
+          });
+
+          app.controller('secondController',function($scope){
+              $scope.name='李四';
+          })
+      </script>
+       
+    </body>
+</html>

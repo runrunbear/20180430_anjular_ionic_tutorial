@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+                <div ng-click="run()">点击</div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope){
+                $scope.text='phonegap中文网';
+
+                  $scope.run=function(){
+
+                      alert('run');
+                      console.log('run');
+                  }
+          });
+      </script>
+       
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+        <style>
+            .red{ background:red; color:blue;}
+            .yellow{ background:yellow;}
+        </style>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+               <div ng-cloak  ng-class="{red:s}">{{text}}</div>
+
+               <div ng-cloak  ng-class="{{sClass}}">{{text}}</div>
+
+              <div ng-cloak  ng-style="{color:'red'}">{{text}}</div>
+
+              <div ng-cloak  ng-style="{{style}}">{{text}}</div>
+
+
+              <a href="{{url}}">百度</a>
+
+              <a ng-href="{{url}}">百度</a>
+
+
+              <img src="{{src}}" />
+
+              <img ng-src="{{src}}" />
+                <br>
+              <br>
+
+
+              <a ng-href="{{url}}" ng-attr-title="{{text}}">百度</a>
+              <br>
+              <br>
+              <div ng-show="s">你好</div>
+
+
+              <br>
+              <br>
+
+              <div ng-if="s">你好</div>
+
+
+              <div ng-switch on="s">
+                  <p ng-switch-default>默认的效果</p>
+                  <p ng-switch-when="false">false切换的效果</p>
+                  <p ng-switch-when="true">true切换的效果</p>
+              </div>
+
+              <br>
+
+              <br>
+
+
+              <div class="animate-switch-container"
+                   ng-switch on="selection">
+                  <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
+                  <div class="animate-switch" ng-switch-when="home">Home Span</div>
+                  <div class="animate-switch" ng-switch-default>default</div>
+              </div>
+
+
+
+              <input type="checkbox" ng-model="open"><br/>
+              <details id="details" ng-open="open">
+                  <summary>Copyright 2011.</summary>
+                  <p>All pages and graphics on this web site are the property of W3School.</p>
+              </details>
+
+
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope){
+              $scope.text='phonegap中文网';
+
+              $scope.s=true;
+
+              $scope.sClass = "{red:true,yellow:true}";
+              $scope.style = "{color:'red',background:'yellow'}";
+
+              $scope.url='http://www.baidu.com';
+
+              $scope.src='http://www.baidu.com/img/bdlogo.png';
+
+
+//              $scope.style = "{color:'red',background:'yellow'}";
+//              $scope.sClass = "{red:true,yellow:true}";
+//              $scope.url = "http://www.baidu.com";
+
+
+              $scope.items = ['settings', 'home', 'other'];
+              $scope.selection = $scope.items[0];
+
+          });
+      </script>
+       
+    </body>
+</html>

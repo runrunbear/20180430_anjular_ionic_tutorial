@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+        <script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.4.0-beta.6/angular-sanitize.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+              <div ng-repeat="innerList in list" ng-init="outerIndex = $index">
+                  <div ng-repeat="value in innerList" ng-init="innerIndex = $index">
+                      <span class="example-init">list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};</span>
+                  </div>
+              </div>
+
+
+              <input type="text" ng-model="name" ng-model-options="{ updateOn: 'blur' }" />
+              {{name}}
+
+
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", ['ngSanitize']);
+          app.controller('firstController',function($scope){
+
+
+               $scope.list = [['a', 'b'], ['c', 'd']];
+
+
+
+          });
+
+      </script>
+
+    </body>
+</html>

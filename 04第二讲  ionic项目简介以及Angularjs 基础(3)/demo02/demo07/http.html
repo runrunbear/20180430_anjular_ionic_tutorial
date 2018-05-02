@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="personController">
+        名: <input type="text" ng-model="person.firstName"><br>
+        姓: <input type="text" ng-model="person.lastName"><br>
+        <br>
+        姓名: {{person.firstName + " " + person.lastName}}
+    </div>
+</div>
+<script>
+    //在angularjs中不建议这样写  控制器污染了全局命名空间
+    var app = angular.module("myApp", []);
+    app.controller("personController", function($scope,$http) {
+
+        $http.get('data.php').success(function(data){
+
+            console.log(data);
+
+        }).error(function(err, status, headers, config){
+        })
+
+
+
+     //$http.post 采用postJSON方式发送数据到后台， 解决办法：在php中使用 $postData=file_get_contents('php://input', true); 这样就可以获取到前端发来的数据
+    var postData={text:'这是post的内容'};
+    var config={params:{id:'5',name:'张三'}}
+    $http.post('data1.php',postData,config) .success(function(data) {
+        console.log(data);
+
+    }).error(function(data){
+        //错误代码
+
+    });
+
+       //jsonp
+
+
+        myUrl ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1&callback=JSON_CALLBACK";
+        $http.jsonp(myUrl).success(
+                function(data){
+                    console.log(data);
+                }
+        ).error(function(){
+            alert('shibai');
+        });
+
+
+
+        $http('post',url).success(function(){
+
+
+        }).error(function(){
+
+
+        })
+
+
+    });
+</script>
+
+
+</body>
+</html>

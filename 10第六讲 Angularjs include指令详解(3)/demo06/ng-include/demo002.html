@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="../angular.min.js"></script>
+    <style>
+        .red{ background:red;}
+        .yellow{ background:yellow;}
+    </style>
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ng-controller="firstController">
+        <div ng-bind="text"></div>
+
+          <div ng-include="url"></div>
+
+          <div ng-include="tpl"></div>
+
+
+         <div ng-include src="tpl2"></div>
+
+
+    </div>
+
+    <script type="text/ng-template" id="tpl.html">
+        Content of the template.111111111111
+    </script>
+    <script type="text/ng-template" id="tpl2.html">
+        Content of the template.2222222222
+    </script>
+
+
+</div>
+
+
+
+
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('firstController',['$scope','$interval',function($scope,$interval){
+        //$scope.text = '<h1>hello</h1>';
+        $scope.text = 'hello';
+
+        $scope.url = 'test.html';
+
+        $scope.tpl = 'tpl.html';
+        $scope.tpl2 = 'tpl2.html';
+
+    }]);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../angular.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController">
+              <input type="button" ng-value="text" ng-disabled="isDisabled">
+              <input type="text" value="{{text}}" ng-readonly="isDisabled">
+              <input type="checkbox" value="{{text}}" ng-checked="isDisabled">
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope,$interval){
+                $scope.n=5
+                $scope.text= $scope.n+'秒';
+
+                $scope.isDisabled=true;
+
+
+               var time=$interval(function(){
+
+                   $scope.n--;
+
+
+                   $scope.text= $scope.n+'秒';
+                   if($scope.n==0){
+                       $interval.cancel(time);;
+                       $scope.text='可以点击了';
+                       $scope.isDisabled=false;
+                   }
+
+
+               },1000);
+
+
+
+          });
+      </script>
+       
+    </body>
+</html>

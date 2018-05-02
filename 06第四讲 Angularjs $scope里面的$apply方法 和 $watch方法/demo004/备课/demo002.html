@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="../angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ng-controller="CartController">
+        <p>价格:<input type="text" ng-model="iphone.money"></p>
+        <p>个数:<input type="text" ng-model="iphone.num"></p>
+        <p>费用:<span>{{ sum() | currency:'￥' }}</span></p>
+        <p>运费:<span>{{iphone.fre | currency:'￥'}}</span></p>
+        <p>总额:<span>{{ sum() + iphone.fre | currency:'￥'}}</span></p>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module("myApp", []);
+    app.controller('CartController',function($scope){
+        $scope.iphone = {
+            money : 5,
+            num : 1,
+            fre : 10
+        };
+        $scope.sum = function(){
+            return $scope.iphone.money * $scope.iphone.num;
+        };
+        /*$scope.$watch('iphone.money',function(newVal,oldVal){
+         console.log(newVal);
+         console.log(oldVal);
+         },true);*/
+
+        $scope.$watch($scope.sum,function(newVal,oldVal){
+            //console.log(newVal);
+            //console.log(oldVal);
+
+            $scope.iphone.fre = newVal >= 100 ? 0 : 10;
+
+        });
+
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>

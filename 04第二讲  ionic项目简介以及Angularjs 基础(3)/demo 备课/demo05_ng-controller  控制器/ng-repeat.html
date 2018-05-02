@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="angular-1.3.0.js"></script>
+    </head>
+    <body>
+      <div ng-app="" ng-controller="namesController">
+
+			<ul>
+			  <li ng-repeat="x in names">
+				{{ x.name + ', ' + x.country }}
+			  </li>
+			</ul>
+
+			</div>
+
+			<script>
+			function namesController($scope) {
+				$scope.names = [
+					{name:'Jani',country:'Norway'},
+					{name:'Hege',country:'Sweden'},
+					{name:'Kai',country:'Denmark'}
+				];
+			}
+			</script>
+
+
+       
+    </body>
+</html>

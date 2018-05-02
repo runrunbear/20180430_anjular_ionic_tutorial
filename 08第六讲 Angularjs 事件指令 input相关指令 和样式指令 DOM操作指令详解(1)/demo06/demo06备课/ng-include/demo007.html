@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../../angular.min.js"></script>
+        <style>
+            .red{ background:red;}
+            .yellow{ background:yellow;}
+        </style>
+    </head>
+    <body>
+      <div ng-app="">
+          <script type="text/ng-template" id="tpl.html">
+              Content of the template.
+          </script>
+
+          <a ng-click="currentTpl='tpl.html'" id="tpl-link">Load inlined template</a>
+          <div id="tpl-content" ng-include src="currentTpl"></div>
+      </div>
+
+       
+    </body>
+</html>
