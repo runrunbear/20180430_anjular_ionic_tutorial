@@ -1,0 +1,17 @@
+<html ng-app="MyServiceApp">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="../angular.min.js"></script>
+    <script src="MyService.js"></script>
+</head>
+
+<body>
+    <div ng-controller="ServiceController">
+        <label>用户名</label>
+        <input type="text" ng-model="username" placeholder="请输入用户名" />
+        <pre ng-show="username">{{users}}</pre>
+    </div>
+</body>
+
+</html>

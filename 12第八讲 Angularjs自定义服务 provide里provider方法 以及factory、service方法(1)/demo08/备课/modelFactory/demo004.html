@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../../angular.min.js"></script>
+    <script>
+
+
+        var text=angular.module('myApp.text',[]);
+        text.factory('MyFactory',function(){
+            return '引入另一个模块的factory';
+
+
+        });
+
+
+        var m1 = angular.module('myApp',['myApp.text']);
+        m1.controller('firstController',['$scope','MyFactory',function($scope,MyFactory){
+
+            console.log(MyFactory);
+
+        }]);
+
+    </script>
+</head>
+
+<body>
+<div ng-controller="firstController">
+
+</div>
+</body>
+</html>

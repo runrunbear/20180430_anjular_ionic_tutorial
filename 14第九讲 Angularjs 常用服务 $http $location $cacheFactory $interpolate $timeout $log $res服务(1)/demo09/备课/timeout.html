@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <script type="text/javascript" src="../../angular.min.js"></script>
+    </head>
+    <body>
+      <div ng-app="myApp">
+
+          <div ng-controller="firstController"  ng-click="show()">
+              {{name}}
+          </div>
+      </div>
+      <script type="text/javascript">
+          var app = angular.module("myApp", []);
+          app.controller('firstController',function($scope,$timeout){
+              $scope.name = 'hello';
+//              setTimeout(function(){
+//                  //$scope.name = 'hi';
+//                  $scope.$apply(function(){
+//                      $scope.name = 'hi';
+//                  });
+//              },2000);
+              $timeout(function(){
+                  $scope.name = '123';
+               },1100);
+
+              $scope.show = function(){
+                  $scope.name = 'hi点击事件发生了';
+              };
+
+          });
+
+
+      </script>
+       
+    </body>
+</html>

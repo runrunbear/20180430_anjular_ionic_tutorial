@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="firstController">
+{{name}}
+
+    <div ng-repeat="item in data">
+
+        {{item.title}}
+    </div>
+</div>
+<br>
+
+<br>
+<div ng-controller="secondController">
+    {{name}}
+    <div ng-repeat="item in data">
+
+        {{item.title}}
+    </div>
+</div>
+<script>
+
+    var m1 = angular.module('myApp',[]);
+
+
+
+    m1.provider('providerServices01',function(){
+
+        this.$get=function(){
+
+            return {
+                message:'this is providerServices01'
+            }
+        }
+
+    });
+
+    m1.service('serviceServices01',function($http){
+
+       var services={};
+
+        services.request=function(){
+            myUrl ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1&callback=JSON_CALLBACK";
+            return $http.jsonp(myUrl);
+        };
+       return services;
+
+
+
+
+    })
+
+    //console.log(m1);
+
+
+    m1.controller('firstController',['$scope','providerServices01','serviceServices01',function($scope,providerServices01,serviceServices01){
+
+
+        console.log(providerServices01);
+
+        $scope.data='123456';
+
+
+        serviceServices01.request().success(function(data){
+
+            $scope.data=data.result;
+
+        });
+        serviceServices01.request().success(function(data){
+
+            $scope.item=data.result;
+
+        });
+        $scope.name='张三';
+
+    }]);
+
+
+    m1.controller('secondController',['$scope','providerServices01','serviceServices01',function($scope,providerServices01,serviceServices01){
+
+
+        console.log(providerServices01);
+
+        $scope.data='123456';
+
+
+        serviceServices01.request().success(function(data){
+
+            $scope.data=data.result;
+
+        });
+        $scope.name='李四';
+
+    }]);
+
+
+</script>
+</body>
+</html>

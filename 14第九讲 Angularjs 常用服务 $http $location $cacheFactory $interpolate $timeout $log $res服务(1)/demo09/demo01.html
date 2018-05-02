@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="firstController">
+{{name}}
+{{age}}
+</div>
+
+<div ng-controller="secondController">
+    {{name}}
+       {{age}}
+</div>
+
+<script>
+
+    var m1 = angular.module('myApp',[]);
+
+    m1.service('serviceServices01',function($http,$rootScope,$log,$filter){
+
+        $rootScope.age='50';
+
+        $log.warn('jinggao');
+
+        var _name='';
+
+        this.setName=function(name){
+            _name=name;
+        };
+        this.getName=function(){
+            return _name;
+        };
+
+        this.getData=function(){
+           var  myUrl ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1&callback=JSON_CALLBACK";
+           return $http.jsonp(myUrl,{cache:true});
+        };
+    });
+   // console.log(m1);
+
+    m1.controller('firstController',['$scope','serviceServices01',function($scope,serviceServices01){
+        //console.log(serviceServices01);
+
+        serviceServices01.getData().success(function(data){
+            console.log(data);
+
+        }).error(function(){
+            alert('shibai ');
+        });
+        $scope.name='张三';
+
+    }]);
+    m1.controller('secondController',['$scope','serviceServices01',function($scope,serviceServices01){
+
+        //console.log(serviceServices01);
+        $scope.name='李四';
+
+    }]);
+
+</script>
+</body>
+</html>

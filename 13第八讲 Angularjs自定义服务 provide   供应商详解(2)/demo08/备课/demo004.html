@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../angular.min.js"></script>
+    <script>
+
+        var m1 = angular.module('myApp',[],function($provide){
+
+            $provide.provider('CustomService',function(){
+
+                this.$get=function(){
+
+                    return {
+                        message:'this is provide'
+
+                    }
+                }
+            });
+            $provide.provider('CustomService2',function(){
+
+                this.$get=function(){
+
+                    return {
+                        message:'this is provide2'
+
+                    }
+                }
+            });
+
+            $provide.factory('CustomFactory',function(){
+
+
+                return {
+                    message:'this is Factory'
+
+                }
+
+            });
+            $provide.factory('CustomFactory2',function(){
+
+
+                return '123'
+
+            })
+
+        });
+
+
+        m1.controller('firstController',['$scope','CustomService','CustomService2','CustomFactory','CustomFactory2',function($scope,CustomService,CustomService2,CustomFactory,CustomFactory2){
+
+            console.log(CustomService);
+            console.log(CustomService2);
+            console.log(CustomFactory);
+            console.log(CustomFactory2);
+
+
+
+        }]);
+
+    </script>
+</head>
+
+<body>
+<div ng-controller="firstController">
+
+</div>
+</body>
+</html>

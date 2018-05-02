@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="../../angular.min.js"></script>
+
+    <script type="text/javascript" src="fillter.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ng-controller="firstController">
+        {{name}}
+
+        {{ "TANK is GOOD" | lowercase |tankreplace}}
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module("myApp", ['tanktest']);
+    app.controller('firstController',function($scope){
+        $scope.name='张三';
+        var arr=[1,2,3];
+        $scope.isArray=angular.isArray($scope.name);
+    });
+</script>
+
+</body>
+</html>

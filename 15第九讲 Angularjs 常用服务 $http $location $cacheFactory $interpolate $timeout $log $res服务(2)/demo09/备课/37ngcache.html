@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#parent div{ width:300px; height:500px; border:1px #000 solid; margin:20px;}
+#parent ul{ width:200px; position:fixed; top:0; right:0;}
+</style>
+<script src="../../angular.min.js"></script>
+<script>
+    angular.module('app.ui', [])
+            .run(['$templateCache','$cacheFactory',
+                function($templateCache,$cacheFactory) {
+                    var cachetest = $cacheFactory('cache');
+                    cachetest.put('a','This is the content of the template');
+                }]);
+    angular.module('app', ['app.ui'])
+            .run(['$templateCache','$cacheFactory',
+                function(temp,cache) {
+                    var cachetest = cache.get('cache');
+                    temp.put('test',cachetest.get('a') );
+
+                    console.log(cachetest.get('a'));
+                   // cachetest.destroy();
+                }]);
+    angular.bootstrap(document, ['app']);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+</div>
+<div ng-controller="Bbb">
+</div>
+</body>
+</html>

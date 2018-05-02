@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="firstController">
+{{name}}
+
+</div>
+<script>
+
+    var m1 = angular.module('myApp',[],function($provide){
+        $provide.provider('providerServices01',function(){
+
+            this.$get=function(){
+
+                    return 'this is providerServices01';
+
+            }
+
+        });
+        $provide.factory('factoryServices01',function(){
+                return {
+                    message:'this is factoryServices01'
+                }
+
+        });
+        $provide.factory('factoryServices02',function(){
+
+
+            var _name='';
+            var factory={};
+
+            factory.setName=function(name){
+
+                _name=name;
+            }
+            factory.getName=function(){
+
+                return _name;
+            }
+            return factory;
+               // return 'this is factoryServices01  text';
+        });
+
+        $provide.service('serviceServices01',function(){
+            var _name='';
+            var service={};
+
+            this.setName=function(name){
+
+                _name=name;
+            }
+            this.service=function(){
+
+                return _name;
+            }
+            return service;
+
+        })
+
+    });
+
+    console.log(m1);
+
+
+    m1.controller('firstController',['$scope','providerServices01','factoryServices01','factoryServices02','serviceServices01',function($scope,providerServices01,factoryServices01,factoryServices02,serviceServices01){
+
+
+        console.log(providerServices01);
+
+
+        console.log(factoryServices01);
+        console.log(factoryServices02);
+
+
+        console.log(serviceServices01);
+
+        $scope.name='张三';
+
+    }]);
+
+</script>
+</body>
+</html>

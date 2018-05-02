@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="firstController">
+{{name}}
+
+ ##name##
+</div>
+<script>
+
+    var m1 = angular.module('myApp',[]);
+    m1.config(['providerServices01Provider','$interpolateProvider',function(providerServices01Provider,$interpolateProvider){
+
+        providerServices01Provider.name='张三';
+
+        providerServices01Provider.age=50;
+
+        $interpolateProvider.startSymbol('##');
+        $interpolateProvider.endSymbol('##');
+
+
+    }])
+
+    m1.provider('providerServices01',function(){
+
+
+        //可以在config里面配置的属性
+
+        this.name='';
+
+        this.age='';
+
+        this.$get=function(){
+            var that=this;
+            var _name='';
+            var service={};
+
+            service.setName=function(name){
+
+                _name=name;
+            }
+            service.getName=function(){
+
+                return _name;
+            }
+            service.getConfigName=function(){
+
+                return that.name+'age:'+that.age;
+            }
+            return service;
+
+        }
+    });
+    m1.service('serviceServices01',function(){
+        var _name='';
+
+        this.setName=function(name){
+
+            _name=name;
+        }
+        this.getName=function(){
+            return _name;
+        }
+    });
+
+    m1.factory('factoryServices01',function(){
+        var _name='';
+        var service={};
+
+        service.setName=function(name){
+
+            _name=name;
+        }
+        service.getName=function(){
+
+            return _name;
+        }
+        return service;
+    })
+
+    console.log(m1);
+
+
+    m1.controller('firstController',['$scope','providerServices01','serviceServices01','factoryServices01',function($scope,providerServices01,serviceServices01,factoryServices01){
+
+
+        console.log(providerServices01);
+
+        console.log(providerServices01.getConfigName());
+
+        console.log(serviceServices01);
+
+        console.log(factoryServices01);
+
+        $scope.name='张三';
+
+    }]);
+
+</script>
+</body>
+</html>

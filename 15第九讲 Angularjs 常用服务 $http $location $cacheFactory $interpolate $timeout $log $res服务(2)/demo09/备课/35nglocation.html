@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="../../angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope','$location',function($scope,$location){
+
+
+    // change the path
+   // $location.path('/newValue')
+    //$location.path('/newValue').search({key: value});
+
+	//var a = $location.absUrl();    //对url进行编码处理
+
+   // $location.path('aaa/bbb/ccc');   //path做路由操作  设置路径   有利于路径管理
+
+	//$location.path('aaa/bbb/ccc').replace();           //作用替换掉之前的路径  不会存在历史管理  不会有返回
+
+
+	//$location.hash('hello');
+	//$location.search({'age':'20'});
+//	var a = $location.protocol();
+    $location.url('hello');
+	//console.log(a);
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../../angular.min.js"></script>
+    <script>
+
+        var m1 = angular.module('myApp',[],function($provide){
+
+            $provide.provider('CustomService',function(){
+
+                this.$get=function(){
+
+                    return {
+                        message:'this is provide'
+
+                    }
+                }
+            })
+
+        });
+
+
+        m1.controller('firstController',['$scope','CustomService',function($scope,CustomService){
+
+            console.log(CustomService);
+
+        }]);
+
+    </script>
+</head>
+
+<body>
+<div ng-controller="firstController">
+
+</div>
+</body>
+</html>

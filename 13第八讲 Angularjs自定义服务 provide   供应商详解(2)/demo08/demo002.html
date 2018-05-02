@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="firstController">
+{{name}}
+
+</div>
+<script>
+
+    var m1 = angular.module('myApp',[]);
+
+    m1.config(function($provide){
+
+            $provide.provider('providerServices01',function(){
+
+                this.$get=function(){
+
+                    return {
+                        message:'this is providerServices01'
+                    }
+                }
+
+            });
+
+
+        $provide.provider('providerServices02',function(){
+
+            this.$get=function(){
+                var _name='';
+                var service={};
+
+                service.setName=function(name){
+
+                    _name=name;
+                }
+                service.getName=function(){
+
+                   return _name;
+                }
+                return service;
+
+            }
+
+        });
+
+    })
+
+    console.log(m1);
+
+
+    m1.controller('firstController',['$scope','providerServices01','providerServices02',function($scope,providerServices01,providerServices02){
+
+
+        console.log(providerServices01);
+
+        providerServices02.setName('李四1111');
+
+
+
+        $scope.name= providerServices02.getName();
+
+        console.log( providerServices02);
+
+    }]);
+
+</script>
+</body>
+</html>

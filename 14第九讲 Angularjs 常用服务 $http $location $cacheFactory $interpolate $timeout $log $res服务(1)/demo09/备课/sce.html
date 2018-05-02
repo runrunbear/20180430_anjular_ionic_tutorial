@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script type="text/javascript" src="../../angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ng-controller="firstController">
+        {{name}}
+        <div ng-bind-html="detailContent()"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module("myApp", []);
+    app.controller('firstController',function($scope,$timeout,$sce,$http){
+        $scope.name = 'hello';
+        $scope.text = '<h1>hello</h1>';
+        var myUrl = "http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid=338&callback=JSON_CALLBACK";
+        $http.jsonp(myUrl).success(
+                function(data){
+                    //$scope.portalDetail = data.result[0];
+
+                    $scope.detailContent = function() {
+                        return $sce.trustAsHtml(data.result[0].content);
+                    };
+
+                }
+        ).error(function(){
+                    alert('失败');
+        });
+
+
+    });
+
+
+</script>
+
+</body>
+</html>
